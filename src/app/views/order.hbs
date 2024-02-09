@@ -1,0 +1,31 @@
+{{> header}}
+
+{{#if order}}
+    <div class="container mb-3">
+        <h1 class="mb-3">Состав заказа №{{order.id}}</h1>
+        <div class="row row-cols-3">
+            {{#each menu}}
+                {{#if (filter_id this.id @root.order.items)}}
+                    {{addCost this.cost}}
+                    <div class="col">
+                        {{> menu_cards adjust_route="../"}}
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+        <div class="row row-cols-1 d-flex justify-content-end">
+            <div class="col-auto">
+                <p class="fs-1">Общая цена: {{totalCost}}</p>
+                {{#if order.isActive}}
+                {{#unless session.isAdmin}}
+                    <form id="submit_form" action="/orders/{{order.id}}?_method=DELETE" method="post">
+                        <button type="submit" class="btn btn-primary btn-lg mt-3">Закрыть заказ</button>
+                    </form>
+                {{/unless}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{else}}
+    <p>Заказ не найден</p>
+{{/if}}

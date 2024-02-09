@@ -1,0 +1,29 @@
+{{> header home="active"}}
+
+<div class="container mt-3">
+    <h1>Активные заказы</h1>
+    <div class="row row-cols-3">
+        {{#each order}}
+        {{#if this.isActive}}
+            <div class="col">
+                <div class="card mt-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Заказ {{this.id}}</h5>
+                        {{#each @root.waiter}}
+                            {{#if (filter_id ../this.id this.orders)}}
+                                <p class="card-text"><a href="orders/{{../this.id}}" class="dark-link">Заказ {{../this.id}} официанта {{this.name}} ({{this.id}}):</a></p>
+                            {{/if}}
+                        {{/each}}
+                        <p class="card-text">Состав:</p>
+                        <ul>
+                            {{#each @root.menu}}
+                                {{#if (filter_id this.id ../this.items)}}<li class="card-text">{{this.title}}</li>{{/if}}
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        {{/each}}
+    </div>
+</div>

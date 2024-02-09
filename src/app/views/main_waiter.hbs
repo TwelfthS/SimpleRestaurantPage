@@ -1,0 +1,22 @@
+{{> header home="active"}}
+<div class="container mt-3">
+  <h1>Ваши активные заказы:</h1>
+  <ul>
+      {{#each order}}
+        {{#if (filter_id this.id @root.waiter_orders)}} 
+        {{#if this.isActive}}
+          {{hasOrders}}
+          <li>
+            <p><a href="orders/{{this.id}}" class="dark-link">Заказ {{this.id}}:</a></p>
+            {{#each @root.menu}}
+              {{#if (filter_id this.id ../this.items)}}<p> {{this.title}}</p>{{/if}}
+            {{/each}}
+          </li>
+        {{/if}}
+        {{/if}}
+      {{/each}}
+  </ul>
+  {{#unless (checkIfHasOrders)}}
+    <p>Работайте усерднее!</p>
+  {{/unless}}
+</div>

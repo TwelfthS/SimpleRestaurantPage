@@ -1,0 +1,18 @@
+{{> header}}
+<div class="container d-flex justify-content-center mt-3">
+    <p class="fs-3 text-danger">{{error}}</p>
+</div>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 50vh">
+    <form method="post">
+    <div class="mb-3">
+        <label for="login_input" class="form-label">Логин</label>
+        <input class="form-control" id="login_input" name="login">
+    </div>
+    <div class="mb-3">
+        <label for="password_input" class="form-label">Пароль</label>
+        <input type="password" class="form-control" id="password_input" name="password">
+    </div>
+    <p>Ещё нет аккаунта? <a href="/signup">Зарегистрироваться</a></p>
+    <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+</div>

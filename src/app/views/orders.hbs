@@ -1,0 +1,23 @@
+{{> header orders="active"}}
+
+{{#unless session.isAdmin}}
+<div class="container">
+    <form method="post">
+        <select name="waiters" class="form-select form-select-lg mb-3 mt-3 w-25" {{disabled}}>
+            {{#if me}}
+                <option selected="true" value="{{me.id}}">{{me.name}}</option>
+            {{else}}
+                {{#each waiter}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            {{/if}}
+        </select>
+        <select name="menu" multiple="true" class="form-select form-select-lg mb-3 w-25">
+            {{#each menu}}
+                <option value="{{this.id}}">{{this.title}}</option>
+            {{/each}}
+        </select>
+        <button id="submit_button" type="submit"class="btn btn-primary">Сделать заказ</button>
+    </form>
+</div>
+{{/unless}}

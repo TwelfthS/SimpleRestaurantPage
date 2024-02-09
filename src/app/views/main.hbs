@@ -1,0 +1,24 @@
+{{> header home="active"}}
+
+<div class="container mt-3">
+  <h1>Главная</h1>
+  <form method="post">
+    <div class="mb-3">
+      <label for="waiter_id" class="form-label">Введите id официанта</label>
+      <input class="form-control w-25" name="waiter_id" id="waiter_id" autocomplete="off">
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">Показать заказы официанта</button>
+  </form>
+  <ul>
+    {{#each order}}
+      {{#if (filter_id this.id @root.waiter_orders)}} 
+        <li>
+          <p><a href="orders/{{this.id}}" class="dark-link">Заказ {{this.id}} {{#unless this.isActive}}(закрыт){{/unless}}:</a></p>
+          {{#each @root.menu}}
+            {{#if (filter_id this.id ../this.items)}}<p> {{this.title}}</p>{{/if}}
+          {{/each}}
+        </li>
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>

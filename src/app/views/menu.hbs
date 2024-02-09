@@ -1,0 +1,11 @@
+{{> header menu="active"}}
+
+<div class="container">
+    <div class="row row-cols-3">
+        {{#each menu}}
+            <div class="col">
+                {{> menu_cards}}
+            </div>
+        {{/each}}
+    </div>
+</div>
